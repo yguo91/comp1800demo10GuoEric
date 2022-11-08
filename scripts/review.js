@@ -1,4 +1,4 @@
-let hikeID = localStorage.getItem("hikeID");
+var hikeID = localStorage.getItem("hikeID");
 
 db.collection("hikes").where("code", "==", hikeID)
     .get()
@@ -11,6 +11,7 @@ db.collection("hikes").where("code", "==", hikeID)
         // We want to have one document per hike, so if the the result of 
         //the query is more than one, we can check it right now and clean the DB if needed.
         if (size = 1) {
+            // console.log(Hikes[0]);
             var thisHike = Hikes[0].data();
             var name = thisHike.name;
             document.getElementById("HikeName").innerHTML = name;
