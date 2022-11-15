@@ -24,7 +24,7 @@ db.collection("hikes").where("code", "==", hikeID)
     });
 
 function writeReview() {
-
+ let user = "";
     let Title = document.getElementById("title").value;
     let Level = document.getElementById("level").value;
     let Season = document.getElementById("season").value;
