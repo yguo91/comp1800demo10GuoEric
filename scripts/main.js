@@ -82,7 +82,13 @@ function populateCardsDynamically() {
     let hikeCardGroup = document.getElementById("hikeCardGroup");   //where to append card
 
     //doublecheck: is your Firestore collection called "hikes" or "Hikes"?
-    db.collection("hikes").get()
+    db.collection("hikes")
+    // .where("level", "==", "easy")   //edit inclass for query
+    // .where("city", "==", "North Vancouver")
+    .orderBy("length")
+    // .orderBy("length_time")            //NEW LINE;  what do you want to sort by?
+    // .limit(2)                       //NEW LINE:  how many do you want to get?
+    .get()
         .then(allHikes => {
             allHikes.forEach(doc => {
                 var hikeName = doc.data().name; //gets the name field
@@ -102,6 +108,7 @@ function populateCardsDynamically() {
 
                 testHikeCard.querySelector('img').src = `./images/${hikeID}.jpg`;
                 // console.log(hikeID);
+                testHikeCard.querySelector('.read-more').href = "eachHike.html?hikeName="+hikeName +"&id=" + hikeID;
                 hikeCardGroup.appendChild(testHikeCard);
             })
         })
